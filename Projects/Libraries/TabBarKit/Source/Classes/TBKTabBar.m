@@ -133,6 +133,11 @@
 	[self setNeedsLayout];
 }
 
+-(void) selectTabAtIndex:(int)index {
+	TBKTabBarItem* tab = [items objectAtIndex:index];
+	[self performSelector:@selector(didSelectTabBarItem:) withObject:tab];
+}
+
 -(void) didSelectTabBarItem:(TBKTabBarItem *)sender {
 	for (TBKTabBarItem *tab in items) {
 		if (tab == sender) {

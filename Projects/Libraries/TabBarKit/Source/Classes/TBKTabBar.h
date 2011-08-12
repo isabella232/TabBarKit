@@ -57,6 +57,13 @@ Check list of items to see new layout. returns YES if layout changed
 -(BOOL) endCustomizingAnimated:(BOOL)animated;
 -(BOOL) isCustomizing;
 
+#pragma mark -
+
+/*!
+@abstract manually select a tab at a given index
+*/
+-(void) selectTabAtIndex:(int)index;
+
 @end
 
 #pragma mark -
