@@ -20,8 +20,8 @@ static CGFloat const TBKTabBarArrowIndicatorHeight = 44.0;
 @property (nonatomic, retain, readwrite) UINavigationController *moreNavigationController;
 @property (nonatomic, retain) UIView *containerView;
 @property (nonatomic, assign) TBKTabBarStyle tabBarStyle;
-@property (nonatomic, assign) CGFloat tabBarHeight;
 @property (nonatomic, assign) BOOL displaysTabBarItemTitles;
+@property (nonatomic, assign) BOOL itemIconsPreRendered;
 -(void) loadViewControllers;
 @end
 
@@ -40,14 +40,16 @@ static CGFloat const TBKTabBarArrowIndicatorHeight = 44.0;
 @synthesize customizableViewControllers;
 @synthesize selectedIndex;
 @synthesize displaysTabBarItemTitles;
+@synthesize itemIconsPreRendered;
 
 #pragma mark Initializer
 
--(id) initWithStyle:(TBKTabBarStyle)aStyle {
+-(id) initWithStyle:(TBKTabBarStyle)aStyle itemIconsPreRendered:(BOOL)isPreRendered {
 	self = [super initWithNibName:nil bundle:nil];
 	if (!self) {
 		return nil;
 	}
+    self.itemIconsPreRendered = isPreRendered;
 	self.tabBarStyle = aStyle;
 	if (self.tabBarStyle == TBKTabBarStyleArrowIndicator) {
 		self.tabBarHeight = TBKTabBarArrowIndicatorHeight;
@@ -55,7 +57,11 @@ static CGFloat const TBKTabBarArrowIndicatorHeight = 44.0;
 	else if (self.tabBarStyle == TBKTabBarStyleDefault) {
 		self.tabBarHeight = TBKTabBarDefaultStyleHeight;
 	}
-	return self;
+	return self;    
+}
+
+-(id) initWithStyle:(TBKTabBarStyle)aStyle {
+    return [self initWithStyle:aStyle itemIconsPreRendered:NO];
 }
 
 
@@ -116,7 +122,12 @@ static CGFloat const TBKTabBarArrowIndicatorHeight = 44.0;
 		if ([controller isKindOfClass:[UINavigationController class]]) {
 			((UINavigationController *)controller).delegate = self;
 		}
-		TBKTabBarItem *tabItem = [[[TBKTabBarItem alloc] initWithImageName:controller.tabImageName style:self.tabBarStyle tag:tagIndex title:controller.title] autorelease];
+		TBKTabBarItem *tabItem = [[[TBKTabBarItem alloc] initWithImageName:controller.tabImageName 
+														 selectedImageName:controller.tabActiveImageName
+                                                                     style:self.tabBarStyle 
+                                                                       tag:tagIndex 
+                                                                     title:controller.title
+															   preRendered:self.itemIconsPreRendered] autorelease];
 		[controllerTabs addObject:tabItem];
 		[controller setTabItem:tabItem];
 		[controller setTabController:self];
@@ -357,6 +368,10 @@ static NSString * const TBKTabControllerKey = @"TBKTabControllerKey";
 	return nil;
 }
 
+-(NSString *) tabActiveImageName {
+    return nil;
+}
+
 -(NSString *) tabTitle {
 	return nil;
 }
@@ -369,6 +384,10 @@ static NSString * const TBKTabControllerKey = @"TBKTabControllerKey";
 
 -(NSString *) tabImageName {
 	return [(UIViewController *)[self.viewControllers objectAtIndex:0] tabImageName];
+}
+
+-(NSString *) tabActiveImageName {
+    return [(UIViewController *)[self.viewControllers objectAtIndex:0] tabActiveImageName];
 }
 
 -(NSString *) tabTitle {

@@ -52,6 +52,7 @@
 @synthesize tabBarStyle;
 @synthesize arrowLayer;
 @synthesize tabMargin;
+@synthesize backgroundView;
 
 #pragma mark CALayer
 
@@ -59,6 +60,7 @@
 	return [CAGradientLayer class];
 }
 
+#pragma mark 
 
 #pragma mark Initializer
 
@@ -68,7 +70,7 @@
 		return nil;
 	}
 	self.tabBarStyle = aStyle;
-	self.tabMargin = 2.0;
+	self.tabMargin = 0.0;
 	self.backgroundColor = [UIColor blackColor];
 	self.userInteractionEnabled = YES;
 	self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin;
@@ -164,6 +166,10 @@
 
 -(void) layoutSubviews {
 	[super layoutSubviews];
+    if (backgroundView) {
+        [self addSubview:backgroundView];
+        [backgroundView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    }
 	CGRect currentBounds = self.bounds;
 	currentBounds.size.width /= self.items.count;
 	currentBounds.size.width -= (self.tabMargin * (self.items.count + 1)) / self.items.count;

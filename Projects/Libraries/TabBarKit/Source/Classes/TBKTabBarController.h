@@ -30,8 +30,11 @@
 @property (nonatomic, retain, readonly) UINavigationController *moreNavigationController;
 @property (nonatomic, copy) NSArray *customizableViewControllers;
 
+@property (nonatomic, assign) CGFloat tabBarHeight;
+
 #pragma mark Designated Initializer
 
+-(id) initWithStyle:(TBKTabBarStyle)aStyle itemIconsPreRendered:(BOOL)isPreRendered;
 -(id) initWithStyle:(TBKTabBarStyle)aStyle;
 
 -(void) setViewControllers:(NSArray *)controllers animated:(BOOL)animated;

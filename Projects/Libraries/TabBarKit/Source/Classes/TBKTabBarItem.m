@@ -138,7 +138,7 @@
 
 #pragma mark Initializers
 
--(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle {
+-(id) initWithImageName:(NSString *)anImageName selectedImageName:(NSString *)aSelectedImageName style:(TBKTabBarItemSelectionStyle)aStyle preRendered:(BOOL)isPreRendered {
 	self = [super init];
 	if (!self) {
 		return nil;
@@ -149,43 +149,41 @@
 	
 	// Image
 	self.imageName = anImageName;
-	self.tabImage = [[UIImage imageNamed:self.imageName] tabBarImage];
-	self.selectedTabImage = [[UIImage imageNamed:self.imageName] selectedTabBarImage];
-	self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+	if (isPreRendered) {
+		self.tabImage = [[UIImage imageNamed:self.imageName] stretchableImageWithLeftCapWidth:1 topCapHeight:2];
+		self.selectedTabImage = [UIImage imageNamed:aSelectedImageName];
+	    self.imageView.contentMode = UIViewContentModeScaleToFill;		
+	
+	} else {
+		self.tabImage = [[UIImage imageNamed:self.imageName] tabBarImage];
+		self.selectedTabImage = [[UIImage imageNamed:self.imageName] selectedTabBarImage];
+		self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+	}
 	[self setImage:self.tabImage forState:UIControlStateNormal];
 	[self setImage:self.selectedTabImage forState:UIControlStateSelected];
 	
 	return self;
 }
 
--(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle tag:(NSInteger)aTag {
-	self = [self initWithImageName:anImageName style:aStyle];
+-(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle {
+	return [self initWithImageName:anImageName selectedImageName:nil style:aStyle preRendered:NO];
+}
+
+-(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle tag:(NSInteger)aTag preRendered:(BOOL)isPreRendered {
+	return [self initWithImageName:anImageName selectedImageName:nil style:aStyle tag:aTag title:nil preRendered:NO];}
+
+-(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle tag:(NSInteger)aTag title:(NSString *)aTitle {
+	return [self initWithImageName:anImageName selectedImageName:nil style:aStyle tag:aTag title:nil preRendered:NO];
+}
+
+-(id) initWithImageName:(NSString *)anImageName selectedImageName:(NSString *)aSelectedImageName style:(TBKTabBarItemSelectionStyle)aStyle tag:(NSInteger)aTag title:(NSString *)aTitle preRendered:(BOOL)isPreRendered {
+	self = [self initWithImageName:anImageName selectedImageName:aSelectedImageName style:aStyle preRendered:isPreRendered];
 	if (!self) {
 		return nil;
 	}
 	self.tag = aTag;
-	return self;
-}
-
--(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle tag:(NSInteger)aTag title:(NSString *)aTitle {
-	self = [self initWithImageName:anImageName style: aStyle tag:aTag];
-	if (!self) {
-		return nil;
-	}
 	self.controllerTitle = aTitle;
-	self.tabTitle = aTitle; // Should be from controller...
-	
-	if (self.controllerTitle && self.selectionStyle == TBKTabBarItemDefaultSelectionStyle) {
-		/*
-		self.displayTitle = YES;
-		self.titleLabel.font = [UIFont boldSystemFontOfSize:10.0];
-		self.titleLabel.textAlignment = UITextAlignmentCenter;
-		self.titleLabel.contentMode = UIViewContentModeLeft;
-		self.imageEdgeInsets = UIEdgeInsetsMake(0, 22, 11, 0);
-		self.titleEdgeInsets = UIEdgeInsetsMake(0, -35, 2, 0);
-		[self setTitle:self.controllerTitle forState:(UIControlStateNormal | UIControlStateSelected)];
-		*/
-	}
+	self.tabTitle = aTitle; // Should be from controller...	
 	return self;
 }
 

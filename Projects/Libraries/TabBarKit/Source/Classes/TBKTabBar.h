@@ -31,6 +31,8 @@ enum {
 
 @property (nonatomic, assign) TBKTabBarStyle tabBarStyle;
 
+@property (nonatomic, retain) UIView* backgroundView;
+
 #pragma mark Designated Initialzer
 
 -(id) initWithFrame:(CGRect)aFrame style:(TBKTabBarStyle)aStyle;

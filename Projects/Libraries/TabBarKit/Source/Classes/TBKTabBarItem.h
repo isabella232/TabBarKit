@@ -25,9 +25,12 @@ enum {
 
 #pragma mark Initializers
 
+-(id) initWithImageName:(NSString *)anImageName selectedImageName:(NSString *)aSelectedImageName style:(TBKTabBarItemSelectionStyle)aStyle preRendered:(BOOL)isPreRendered;
+
 -(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle;
--(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle tag:(NSInteger)aTag;
+-(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle tag:(NSInteger)aTag preRendered:(BOOL)isPreRendered;
 -(id) initWithImageName:(NSString *)anImageName style:(TBKTabBarItemSelectionStyle)aStyle tag:(NSInteger)aTag title:(NSString *)aTitle;
+-(id) initWithImageName:(NSString *)anImageName selectedImageName:(NSString *)aSelectedImageName style:(TBKTabBarItemSelectionStyle)aStyle tag:(NSInteger)aTag title:(NSString *)aTitle preRendered:(BOOL)isPreRendered;
 
 @end
 
@@ -40,6 +43,7 @@ enum {
 @protocol TBKTabBarItemDataSource <NSObject>
 
 @property (nonatomic, readonly) NSString *tabImageName;
+@property (nonatomic, readonly) NSString *tabActiveImageName;
 @property (nonatomic, readonly) NSString *tabTitle;
 
 @end
