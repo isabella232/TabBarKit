@@ -1,5 +1,5 @@
 
-#import <TabBarKit/TabBarKitLibrary.h>
+#import "TabBarKitLibrary.h"
 
 NSString * 
 TabBarKitLibraryGetVersion() {

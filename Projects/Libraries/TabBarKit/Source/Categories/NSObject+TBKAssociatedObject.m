@@ -1,5 +1,5 @@
 
-#import <TabBarKit/NSObject+TBKAssociatedObject.h>
+#import "NSObject+TBKAssociatedObject.h"
 
 @implementation NSObject (TBKAssociatedObject)
 

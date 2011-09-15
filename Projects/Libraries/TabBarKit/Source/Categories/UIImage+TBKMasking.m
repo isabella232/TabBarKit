@@ -1,5 +1,5 @@
 
-#import <TabBarKit/UIImage+TBKMasking.h>
+#import "UIImage+TBKMasking.h"
 
 @implementation UIImage (TBKTabBarImage)
 

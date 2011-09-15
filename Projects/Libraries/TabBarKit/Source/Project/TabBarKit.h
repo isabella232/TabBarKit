@@ -5,6 +5,6 @@
 @copyright	(c) 2010 - 2011, David Morford
 */
 
-#import <TabBarKit/TBKTabBar.h>
-#import <TabBarKit/TBKTabBarItem.h>
-#import <TabBarKit/TBKTabBarController.h>
+#import "TBKTabBar.h"
+#import "TBKTabBarItem.h"
+#import "TBKTabBarController.h"

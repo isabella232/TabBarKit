@@ -1,6 +1,6 @@
 
-#import <TabBarKit/TBKTabBar.h>
-#import <TabBarKit/TBKTabBarItem.h>
+#import "TBKTabBar.h"
+#import "TBKTabBarItem.h"
 
 @interface TBKArrowLayer : CAShapeLayer
 @end

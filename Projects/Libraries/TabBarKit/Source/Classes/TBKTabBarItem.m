@@ -1,6 +1,6 @@
 
-#import <TabBarKit/TBKTabBarItem.h>
-#import <TabBarKit/UIImage+TBKMasking.h>
+#import "TBKTabBarItem.h"
+#import "UIImage+TBKMasking.h"
 
 @interface TBKTabBarItemSelectionLayer : CAShapeLayer
 -(id) initWithItemFrame:(CGRect)itemFrame style:(TBKTabBarItemSelectionStyle)aStyle;

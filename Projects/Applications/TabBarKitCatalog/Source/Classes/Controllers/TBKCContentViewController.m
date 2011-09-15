@@ -1,6 +1,6 @@
 
 #import "TBKCContentViewController.h"
-#import <TabBarKit/TBKTabBarController.h>
+#import "TBKTabBarController.h"
 
 @implementation TBKCContentViewController
 

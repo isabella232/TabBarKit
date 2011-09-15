@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
-#import <TabBarKit/TabBarKit.h>
+#import "TabBarKit.h"
 
 @class TBKCMasterViewController, TBKCDetailViewController;
 

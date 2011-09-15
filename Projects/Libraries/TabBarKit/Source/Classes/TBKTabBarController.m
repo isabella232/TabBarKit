@@ -1,8 +1,8 @@
 
-#import <TabBarKit/TBKTabBarController.h>
-#import <TabBarKit/TBKTabBar.h>
-#import <TabBarKit/TBKTabBarItem.h>
-#import <TabBarKit/NSObject+TBKAssociatedObject.h>
+#import "TBKTabBarController.h"
+#import "TBKTabBar.h"
+#import "TBKTabBarItem.h"
+#import "NSObject+TBKAssociatedObject.h"
 #import <QuartzCore/QuartzCore.h>
 
 static CGFloat const TBKTabBarDefaultStyleHeight = 49.0;
