@@ -116,8 +116,8 @@
 @property (nonatomic, retain) NSString *tabTitle;
 @property (nonatomic, assign) BOOL displayTitle;
 
-@property (nonatomic, assign) TBKTabBarItemSelectionLayer *selectionLayer;
-@property (nonatomic, assign) TBKBadgeLayer *badgeLayer;
+@property (nonatomic, retain) TBKTabBarItemSelectionLayer *selectionLayer;
+@property (nonatomic, retain) TBKBadgeLayer *badgeLayer;
 @end
 
 #pragma mark -
@@ -242,6 +242,8 @@
 	self.imageName = nil;
 	self.tabImage = nil;
 	self.selectedTabImage = nil;
+    self.selectionLayer = nil;
+    self.badgeLayer = nil;
 	[super dealloc];
 }
 

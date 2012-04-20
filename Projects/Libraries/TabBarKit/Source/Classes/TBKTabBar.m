@@ -37,7 +37,7 @@
 #pragma mark -
 
 @interface TBKTabBar ()
-@property (nonatomic, assign) TBKArrowLayer *arrowLayer;
+@property (nonatomic, retain) TBKArrowLayer *arrowLayer;
 @property (nonatomic, assign) CGFloat tabMargin;
 -(void) setArrowPositionAnimated:(BOOL)animated;
 @end
