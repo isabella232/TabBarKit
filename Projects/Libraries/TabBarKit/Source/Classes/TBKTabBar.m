@@ -76,7 +76,7 @@
 	self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin;
 	
 	if (self.tabBarStyle == TBKTabBarStyleArrowIndicator) {
-		self.arrowLayer = [[TBKArrowLayer alloc] init];
+		self.arrowLayer = [[[TBKArrowLayer alloc] init] autorelease];
 		CGRect arrowFrame = self.arrowLayer.frame;
 		arrowFrame.origin.y = -(arrowFrame.size.height - 2.5f);
 		self.arrowLayer.frame = arrowFrame;

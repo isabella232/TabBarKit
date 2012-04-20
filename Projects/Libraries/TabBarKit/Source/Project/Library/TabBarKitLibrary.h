@@ -2,4 +2,4 @@
 @class NSString;
 
 NSString * 
-TabBarKitLibraryGetVersion();
+TabBarKitLibraryGetVersion(void);
